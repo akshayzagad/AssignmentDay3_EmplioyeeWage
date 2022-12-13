@@ -1,21 +1,24 @@
 package com.bridglabz;
 
+import java.util.Scanner;
+
 public class EmployeeWage {
-    private int Wage_Per_Hour ;
+    CompanyBuildWage [] record;
     static final int Full_Time_Hour = 8;
     static final int Part_Time_Hour = 4;
     static final int Is_Part_Time_Hour = 1;
     static final int Is_Full_Time_Hour = 2;
-    private int Working_Days_Per_Month;
-    private int Working_Hours_Per_Month;
-
-    public EmployeeWage(int wage_Per_Hour, int working_Days_Per_Month, int working_Hours_Per_Month) {
-        Wage_Per_Hour = wage_Per_Hour;
-        Working_Days_Per_Month = working_Days_Per_Month;
-        Working_Hours_Per_Month = working_Hours_Per_Month;
+    int noOfCompany;
+    public EmployeeWage() {
+        record = new CompanyBuildWage[5];
     }
-
-    public int calculateWage(){
+    public void addCompany(int workingDaysPerMonth, int workingHoursPerMonth, int wagePerHour, String companyName){
+        CompanyBuildWage empWage=new CompanyBuildWage(  workingDaysPerMonth, workingHoursPerMonth, wagePerHour, companyName);
+        empWage.setTotalWage(calculateWage( workingDaysPerMonth, workingHoursPerMonth, wagePerHour));
+        record[noOfCompany]=empWage;
+        noOfCompany++;
+    }
+    public int calculateWage(int Wage_Per_Hour, int Working_Days_Per_Month, int Working_Hours_Per_Month){
         int day = 1;
         int totalWage = 0;
         int workingHours=0;
@@ -51,12 +54,12 @@ public class EmployeeWage {
 
 
     public static void main(String[] args) {
-        EmployeeWage Company1=new EmployeeWage(40,26,120);
-        int TCS=Company1.calculateWage();
-        System.out.println("Total Wage For TCS Company is: "+ TCS);
-        EmployeeWage Company2=new EmployeeWage(90,28,145);
-        int Tata =Company2.calculateWage();
-        System.out.println("Total Wage For Tata Company is: "+ Tata);
-    }
+        EmployeeWage employeeWage = new EmployeeWage();
+        employeeWage.addCompany(20,200,70,"TAta");
+        employeeWage.addCompany(26,200,60,"TCS");
+        for (int i = 0; i < employeeWage.noOfCompany; i++) {
+            System.out.println(employeeWage.record[i].getCompanyName() + " : " + employeeWage.record[i].getTotalWage());
 
+        }
+    }
 }
