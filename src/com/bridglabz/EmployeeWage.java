@@ -18,6 +18,8 @@ public class EmployeeWage implements Interface{
         EmployeeWage employeeWage = new EmployeeWage();
         employeeWage.addCompany(20,200,70,"TAta");
         employeeWage.addCompany(26,200,60,"TCS");
+        employeeWage.addCompany(30, 40, 25, "Accenture");
+        employeeWage.addCompany(31,50,20,"Jio");
         for (CompanyBuildWage cmp : employeeWage.companyEmpWageList){
             System.out.println(cmp.getCompanyName() +" : "+cmp.getTotalWage());
         }
